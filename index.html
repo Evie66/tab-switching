@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+        }
+
+        .wrap-hd {
+            overflow: hidden;
+        }
+
+        .wrap-hd span {
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #ccc;
+            float: left;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .wrap-hd span.current {
+            background-color: #999;
+        }
+
+        .wrap-bd {
+            position: relative;
+        }
+
+        .wrap-bd li {
+            list-style: none;
+            background-color: pink;
+            height: 250px;
+            width: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        .wrap-bd li img {
+            width: 400px;
+        }
+
+        .wrap-bd li.current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="wrap-hd" id="hd">
+            <span class="current">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+        <ul class="wrap-bd" id="bd">
+            <li class="current"><img src="images/1.webp" alt=""></li>
+            <li><img src="images/2.webp" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.webp" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        function my$(id) {
+            return document.getElementById(id);
+        }
+        var spans = my$("hd").getElementsByTagName("span");
+        var list = my$("bd").getElementsByTagName("li");
+        for (var i = 0; i < spans.length; i++) {
+            spans[i].index = i;
+            spans[i].onclick = function () {
+                for (var j = 0; j < spans.length; j++) {
+                    spans[j].className = "";
+                    list[j].className = "";
+                }
+                this.className = "current";
+                list[this.index].className = "current";
+            };
+        }
+    </script>
+</body>
+
+</html>
